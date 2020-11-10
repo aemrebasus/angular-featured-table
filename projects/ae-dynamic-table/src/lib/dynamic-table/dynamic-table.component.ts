@@ -235,20 +235,30 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
 
   toCSV(): void {
     let csvData = 'data:text/csv;charset=utf-8;,';
-    this.data.map(e => Object.values(e).join(',')).forEach(d => {
-      csvData += d + '\n';
-    });
+    this.getFilteredData()
+      .forEach(d => {
+        csvData += Object.values(d).join(',') + '\n';
+      });
     csvData = encodeURI(csvData);
     window.open(csvData);
   }
 
   toJSON(): void {
     let jsonData = 'data:text/csv;charset=utf-8,';
-    jsonData += JSON.stringify(this.data);
+    jsonData += JSON.stringify(this.getFilteredData());
     jsonData = encodeURI(jsonData);
     window.open(jsonData);
   }
 
+  getFilteredData(): { [key: string]: any }[] {
+    return this.data.map(e => {
+      const obj = {};
+      this.config.filteredColumns.forEach(f => {
+        obj[f] = e[f];
+      });
+      return obj;
+    });
+  }
 
 
 
