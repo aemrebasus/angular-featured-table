@@ -233,6 +233,21 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
   }
 
 
+  toCSV(): void {
+    let csvData = 'data:text/csv;charset=utf-8;,';
+    this.data.map(e => Object.values(e).join(',')).forEach(d => {
+      csvData += d + '\n';
+    });
+    csvData = encodeURI(csvData);
+    window.open(csvData);
+  }
+
+  toJSON(): void {
+    let jsonData = 'data:text/csv;charset=utf-8,';
+    jsonData += JSON.stringify(this.data);
+    jsonData = encodeURI(jsonData);
+    window.open(jsonData);
+  }
 
 
 
