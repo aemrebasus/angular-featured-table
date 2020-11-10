@@ -11,10 +11,19 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 export interface DynamicTableConfig {
 
   /**
+   * name of the entity/data etc that help us to store the state of this component based on the entity type.
+   */
+  name?: string;
+
+  /**
    * This field allows the users to view only desired columns.
    */
   displayedColumns?: string[];
 
+  /**
+   * This field allows the user to select/deselect columns usering the filter button.
+   */
+  filteredColumns?: string[];
   /**
    * This field allows users to modify the number of items shown at a time.
    */
@@ -41,12 +50,18 @@ export interface DynamicTableConfig {
    */
   copyToClipboardOnClick?: boolean;
 
+  /**
+   * Filter data list support
+   */
+  filterDatalistActive?: boolean;
+
 }
 
 
 export const DEFAULT_DYNAMICTABLE_CONFIG: DynamicTableConfig = {
-
+  name: 'undefined',
   displayedColumns: ['id', 'name', 'title', 'skills'],
+  filteredColumns: ['id', 'name', 'title', 'skills'],
   pageSizeOptions: [5, 10, 15, 20, 25, 50, 100, 250],
   clipboardDelimeter: '\t=> ',
   snackbarActive: true,
@@ -55,8 +70,8 @@ export const DEFAULT_DYNAMICTABLE_CONFIG: DynamicTableConfig = {
     horizontalPosition: 'right',
     verticalPosition: 'bottom'
   },
-  copyToClipboardOnClick: true
-
+  copyToClipboardOnClick: true,
+  filterDatalistActive: true
 };
 
 
@@ -102,6 +117,12 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
    */
   mappedData: any;
 
+
+  /**
+   * The current item that user move the mouse over
+   */
+  hoveredItem: any;
+
   constructor(private clipboard: Clipboard, private snackBar: MatSnackBar) {
 
   }
@@ -131,8 +152,12 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
     this.dataSource.data = [...this.dataSource.data];
   }
 
+
+
   /**
    * When user click the table row, this method runs.
+   * if the copyToCLipboardOnCLick is active, the item value will be copied to clipboard
+   * Also the item object will be emitted to parent component.
    */
   clickedTheTableRow(id: number): void {
 
@@ -140,6 +165,19 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
 
     this.selected.emit(this.data.find(e => e.id === id) as GenObjectType);
   }
+
+  /**
+   * When user mouser enter the table row, run this method.
+   * Set the hovered item to the hoverItem
+   */
+  mouseenterAction(event, id: number): void {
+    // TODO
+    // this.hoveredItem = this.data.find(e => e.id === id);
+    // console.log(event);
+    // console.log(id);
+  }
+
+
 
   /**
    * Copy item content by id to clip board.
@@ -179,6 +217,16 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
       this.snackBar.openFromComponent(ClipboardTeamplateComponent, { ...this.config.snackbar });
     }
   }
+
+
+  clickedFilterList(event): void {
+    event.preventDefault();
+  }
+
+
+
+
+
 
   isSnackbarActive(): boolean { return this.config.snackbarActive; }
   isClipboardActive(): boolean { return this.config.copyToClipboardOnClick; }

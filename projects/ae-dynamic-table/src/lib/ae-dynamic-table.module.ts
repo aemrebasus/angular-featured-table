@@ -14,7 +14,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ClipboardModule } from '@angular/cdk/clipboard';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatListModule } from '@angular/material/list';
 @NgModule({
   declarations: [AeDynamicTableComponent, DynamicTableComponent, ClipboardTeamplateComponent],
   imports: [
@@ -28,10 +31,14 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     MatSnackBarModule,
     MatTooltipModule,
     MatPaginatorModule,
+    MatToolbarModule,
+    MatButtonModule,
     MatSortModule,
     DragDropModule,
     ClipboardModule,
     MatSnackBarModule,
+    MatMenuModule,
+    MatListModule,
   ],
   exports: [AeDynamicTableComponent, DynamicTableComponent]
 })
