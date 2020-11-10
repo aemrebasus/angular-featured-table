@@ -3,7 +3,7 @@
   <!-- Filter  -->
   <span style="display:flex;">
 
-    <mat-form-field style="flex:1 auto;">
+    <mat-form-field style="flex:1 auto;" (dblclick)="input.value =''" >
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input list="datalist" autocomplete="off">
       <datalist id="datalist">
@@ -24,7 +24,7 @@
     </span>
     <tr mat-header-row *matHeaderRowDef="config.displayedColumns"></tr>
     <tr class="table-row" mat-row *matRowDef="let row; columns: config.displayedColumns;" cdkDrag
-      (click)="copyItemContentToClipboardById(row.id)">
+      (click)="clickedTheTableRow(row.id)">
       <div class="custom-placeholder" *cdkDragPlaceholder></div>
     </tr>
   </table>
