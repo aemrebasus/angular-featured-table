@@ -1,5 +1,28 @@
 <div class="mat-elevation-z8">
-  <table mat-table class="full-width-table" matSort aria-label="Elements">
+
+  <!-- Filter  -->
+  <span style="display:flex;">
+    <!-- <mat-form-field>
+      <mat-label>Filters</mat-label>
+      <mat-select multiple>
+        <mat-option *ngFor="let col of displayedColumns" [value]="col" [(ngModel)]="customDisplayedColumns">{{col}}</mat-option>
+      </mat-select>
+    </mat-form-field> -->
+
+    <mat-form-field style="flex:1 auto;">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input list="datalist" autocomplete="off">
+      <datalist id="datalist">
+        <option>None</option>
+        <option *ngFor="let o of mappedData">{{o}}</option>
+
+      </datalist>
+    </mat-form-field>
+  </span>
+
+
+  <table mat-table class="full-width-table example-list" matSort aria-label="Elements" cdkDropList
+    (cdkDropListDropped)="drop($event)">
     <!-- Id Column -->
     <span *ngFor="let col of displayedColumns">
       <ng-container [matColumnDef]="col">
@@ -8,7 +31,9 @@
       </ng-container>
     </span>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr class="example-box" mat-row *matRowDef="let row; columns: displayedColumns;" cdkDrag>
+      <div class="custom-placeholder" *cdkDragPlaceholder></div>
+    </tr>
   </table>
 
   <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" [pageSize]="5"
