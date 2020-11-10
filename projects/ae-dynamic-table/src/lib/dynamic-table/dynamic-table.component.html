@@ -16,20 +16,20 @@
   <table mat-table class="full-width-table example-list" matSort aria-label="Elements" cdkDropList
     (cdkDropListDropped)="drop($event)">
     <!-- Id Column -->
-    <span *ngFor="let col of displayedColumns">
+    <span *ngFor="let col of config.displayedColumns">
       <ng-container [matColumnDef]="col">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{col | titlecase}}</th>
         <td mat-cell *matCellDef="let row">{{row[col]}}</td>
       </ng-container>
     </span>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr class="table-row" mat-row *matRowDef="let row; columns: displayedColumns;" cdkDrag
+    <tr mat-header-row *matHeaderRowDef="config.displayedColumns"></tr>
+    <tr class="table-row" mat-row *matRowDef="let row; columns: config.displayedColumns;" cdkDrag
       (click)="copyItemContentToClipboardById(row.id)">
       <div class="custom-placeholder" *cdkDragPlaceholder></div>
     </tr>
   </table>
 
   <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" [pageSize]="5"
-    [pageSizeOptions]="pageSizeOptions">
+    [pageSizeOptions]="config.pageSizeOptions">
   </mat-paginator>
 </div>

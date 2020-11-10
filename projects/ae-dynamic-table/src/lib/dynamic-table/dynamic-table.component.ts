@@ -2,9 +2,36 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+
+export interface DynamicTableConfig {
+
+  /**
+   * This field allows the users to view only desired columns.
+   */
+  displayedColumns: string[];
+
+  /**
+   * This field allows users to modify the number of items shown at a time.
+   */
+  pageSizeOptions: number[];
+
+  /**
+   * When user click the item, it is copied to clipboard.
+   * This delimeter is between the key and value.
+   */
+  clipboardDelimeter: string;
+
+  /**
+   * Snackbar configuration
+   */
+  snackbar: MatSnackBarConfig;
+
+
+
+}
 
 @Component({
   selector: 'ae-dynamic-table',
@@ -31,32 +58,40 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
     { id: 3, name: 'Ahmet Emrebas', title: 'Full Stack Engineer', skills: 'Angular, TypeScript, Angular Material, CSS, Java, Spring Boot 5, NodeJS, JavaScript' },
   ];
 
-  /**
-   * This field allows the users to view only desired columns.
-   */
-  @Input() displayedColumns = ['id', 'name', 'title', 'skills'];
 
-  /**
-   * This field allows users to modify the number of items shown at a time.
-   */
-  @Input() pageSizeOptions = [5, 10, 15, 20, 25, 50, 100, 250];
 
 
   /**
    * Generla configuration of this component.
    */
-  @Input() config = {
+  @Input() config: DynamicTableConfig = {
+
+    /**
+     * This field allows the users to view only desired columns.
+     */
+    displayedColumns: ['id', 'name', 'title', 'skills'],
+
+    /**
+     * This field allows users to modify the number of items shown at a time.
+     */
+    pageSizeOptions: [5, 10, 15, 20, 25, 50, 100, 250],
+
     /**
      * When user click the item, it is copied to clipboard.
      * This delimeter is between the key and value.
      */
     clipboardDelimeter: '\t=> ',
 
-
     /**
-     * Popup message duration.
+     * Snackbar configuration
      */
-    popupMesageDuration: 3000
+    snackbar: {
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom'
+    }
+
+
   };
 
 
@@ -111,23 +146,40 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
     this.snackBarFromComponent(JSON.stringify(rawdata));
   }
 
+  /**
+   * Display basic snackbar message.
+   */
   displayMessage(message: string): void {
-    this.snackBar.open(message, null, { duration: this.config.popupMesageDuration });
+    this.snackBar.open(
+      message,
+      null,
+      { ...this.config.snackbar }
+    );
   }
 
+  /**
+   * Display snackbar message with component view.
+   */
   snackBarFromComponent(message: string): void {
     clipboardTemplateMessage$ = JSON.parse(message);
-    this.snackBar.openFromComponent(ClipboardTeamplateComponent, { duration: this.config.popupMesageDuration });
+    this.snackBar.openFromComponent(
+      ClipboardTeamplateComponent,
+      { ...this.config.snackbar }
+    );
   }
 
 }
 
+/**
+ * Global variable to store the message and pass it to the snackboar template.
+ */
 let clipboardTemplateMessage$;
+
 
 @Component({
   selector: 'ae-78999991231',
   template: `
-              <h3>Copied the item.</h3>
+              <h3>Copied to Clipboard</h3>
               <hr>
 
               <table>
