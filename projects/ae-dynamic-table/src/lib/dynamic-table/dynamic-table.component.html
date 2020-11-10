@@ -2,20 +2,12 @@
 
   <!-- Filter  -->
   <span style="display:flex;">
-    <!-- <mat-form-field>
-      <mat-label>Filters</mat-label>
-      <mat-select multiple>
-        <mat-option *ngFor="let col of displayedColumns" [value]="col" [(ngModel)]="customDisplayedColumns">{{col}}</mat-option>
-      </mat-select>
-    </mat-form-field> -->
 
     <mat-form-field style="flex:1 auto;">
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input list="datalist" autocomplete="off">
       <datalist id="datalist">
-        <option>None</option>
         <option *ngFor="let o of mappedData">{{o}}</option>
-
       </datalist>
     </mat-form-field>
   </span>
@@ -31,7 +23,7 @@
       </ng-container>
     </span>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr class="example-box" mat-row *matRowDef="let row; columns: displayedColumns;" cdkDrag>
+    <tr class="table-row" mat-row *matRowDef="let row; columns: displayedColumns;" cdkDrag>
       <div class="custom-placeholder" *cdkDragPlaceholder></div>
     </tr>
   </table>

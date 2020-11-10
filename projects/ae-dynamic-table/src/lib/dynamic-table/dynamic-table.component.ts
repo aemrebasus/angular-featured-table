@@ -36,12 +36,16 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
    */
   @Input() pageSizeOptions = [5, 10, 15, 20, 25, 50, 100, 250];
 
-  mappedData: any[];
+  mappedData: any;
 
   customDisplayedColumns: string;
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.data);
+    this.mappedData = this.dataSource.data.reduce((p, c) => {
+      let __p = p ? p : {};
+      return [...Object.values(__p), ...Object.values(c)];
+    });
   }
 
   ngAfterViewInit(): void {
