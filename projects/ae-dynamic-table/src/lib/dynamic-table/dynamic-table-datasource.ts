@@ -4,15 +4,10 @@ import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
-// TODO: Replace this with your own data model type
-export interface DynamicTableItem {
-  name: string;
-  id: number;
-  extra: number;
-}
+
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: DynamicTableItem[] = [
+const EXAMPLE_DATA: any[] = [
   { id: 1, name: 'Hydrogen', extra: 3 },
   { id: 2, name: 'Helium', extra: 3 },
   { id: 3, name: 'Lithium', extra: 3 },
@@ -40,8 +35,8 @@ const EXAMPLE_DATA: DynamicTableItem[] = [
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class DynamicTableDataSource extends DataSource<DynamicTableItem> {
-  data: DynamicTableItem[] = EXAMPLE_DATA;
+export class DynamicTableDataSource extends DataSource<any> {
+  data: any[] = EXAMPLE_DATA;
   paginator: MatPaginator;
   sort: MatSort;
 
@@ -54,7 +49,7 @@ export class DynamicTableDataSource extends DataSource<DynamicTableItem> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<DynamicTableItem[]> {
+  connect(): Observable<any[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
     const dataMutations = [
@@ -78,7 +73,7 @@ export class DynamicTableDataSource extends DataSource<DynamicTableItem> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: DynamicTableItem[]) {
+  private getPagedData(data: any[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -87,7 +82,7 @@ export class DynamicTableDataSource extends DataSource<DynamicTableItem> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: DynamicTableItem[]) {
+  private getSortedData(data: any[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
