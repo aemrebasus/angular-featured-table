@@ -2,7 +2,7 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>
-      <h4>Dynamic Table</h4>
+      Samples
     </mat-toolbar>
     <mat-nav-list>
       <!-- <a mat-list-item href="#">Link 1</a>
@@ -16,7 +16,20 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>angular-featured-table</span>
+      <span>Dynamic Table</span>
+
+      <div style="display:flex; flex: 1 auto; justify-content:flex-end;">
+
+        <div style="width: 100px; display: flex; justify-content: space-around;">
+          <a href="https://www.linkedin.com/in/ahmet-emrebas/" target="__black">
+            <fa-icon [icon]="linkedIn" size="lg"></fa-icon>
+          </a>
+
+          <a href="https://github.com/aemrebasus" target="__black">
+            <fa-icon [icon]="github" size="lg"></fa-icon>
+          </a>
+        </div>
+      </div>
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>

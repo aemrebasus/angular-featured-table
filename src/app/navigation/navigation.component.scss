@@ -15,3 +15,12 @@
   top: 0;
   z-index: 1;
 }
+
+.ng-fa-icon {
+  color: white;
+  transition: all ease-in-out 400ms;
+}
+
+.ng-fa-icon:hover {
+  color: #303030;
+}
