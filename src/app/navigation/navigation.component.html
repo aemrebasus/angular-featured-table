@@ -1,27 +1,31 @@
 <mat-sidenav-container class="sidenav-container">
+
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar>
       Angular Library
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item>View</a>
-      <a mat-list-item>Api</a>
-      <a mat-list-item>Usage</a>
-
+      <a mat-list-item href="https://www.npmjs.com/package/ae-dynamic-table" target="__black">npm</a>
+      <a mat-list-item href="https://github.com/aemrebasus/angular-featured-table" target="__black">git repo</a>
     </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
+
     <mat-toolbar color="primary">
+
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
+
       <span>Dynamic Table</span>
 
       <div style="display:flex; flex: 1 auto; justify-content:flex-end;">
 
         <div style="width: 100px; display: flex; justify-content: space-around;">
+
           <a href="https://www.linkedin.com/in/ahmet-emrebas/" target="__black">
             <fa-icon [icon]="linkedIn" size="lg"></fa-icon>
           </a>
@@ -29,11 +33,19 @@
           <a href="https://github.com/aemrebasus" target="__black">
             <fa-icon [icon]="github" size="lg"></fa-icon>
           </a>
+
         </div>
+
       </div>
+
     </mat-toolbar>
+
+    <!-- content -->
     <div class="content">
       <ng-content></ng-content>
+
     </div>
+
   </mat-sidenav-content>
+
 </mat-sidenav-container>
