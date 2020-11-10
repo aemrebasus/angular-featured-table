@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { AeDynamicTableComponent } from './ae-dynamic-table.component';
-import { DynamicTableComponent } from './dynamic-table/dynamic-table.component';
+import { ClipboardTeamplateComponent, DynamicTableComponent } from './dynamic-table/dynamic-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,7 +16,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
-  declarations: [AeDynamicTableComponent, DynamicTableComponent],
+  declarations: [AeDynamicTableComponent, DynamicTableComponent, ClipboardTeamplateComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -31,6 +31,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
     MatSortModule,
     DragDropModule,
     ClipboardModule,
+    MatSnackBarModule,
   ],
   exports: [AeDynamicTableComponent, DynamicTableComponent]
 })

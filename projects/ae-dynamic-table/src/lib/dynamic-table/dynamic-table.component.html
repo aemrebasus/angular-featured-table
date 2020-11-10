@@ -24,7 +24,7 @@
     </span>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr class="table-row" mat-row *matRowDef="let row; columns: displayedColumns;" cdkDrag
-      (click)="copyToClipboard(row.id)">
+      (click)="copyItemContentToClipboardById(row.id)">
       <div class="custom-placeholder" *cdkDragPlaceholder></div>
     </tr>
   </table>

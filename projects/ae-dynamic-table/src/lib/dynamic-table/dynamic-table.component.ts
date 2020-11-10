@@ -2,6 +2,7 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 
@@ -16,6 +17,9 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
 
+  /**
+   * Table data source
+   */
   dataSource: MatTableDataSource<any>;
 
   /**
@@ -39,17 +43,30 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
 
 
   /**
-   * When user click the item, it is copied to clipboard.
-   * This delimeter is between the key and value.
+   * Generla configuration of this component.
    */
-  @Input() clipboardDelimeter = '\t=> ';
+  @Input() config = {
+    /**
+     * When user click the item, it is copied to clipboard.
+     * This delimeter is between the key and value.
+     */
+    clipboardDelimeter: '\t=> ',
+
+
+    /**
+     * Popup message duration.
+     */
+    popupMesageDuration: 3000
+  };
+
+
 
   /**
    * data list for filter input.
    */
   mappedData: any;
 
-  constructor(private clipboard: Clipboard) {
+  constructor(private clipboard: Clipboard, private snackBar: MatSnackBar) {
 
   }
 
@@ -78,14 +95,50 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
     this.dataSource.data = [...this.dataSource.data];
   }
 
+  /**
+   * Copy item content by id to clip board.
+   */
+  copyItemContentToClipboardById(id: number): void {
+    const rawdata = this.data.find(e => e.id === id);
+    const textToCopy = JSON.stringify(rawdata)
+      .replace(/,"/g, '\n')
+      .replace(/{|}/g, '')
+      .replace(/:/g, `${this.config.clipboardDelimeter}`)
+      .replace(/"/g, '');
 
-  copyToClipboard(id: number): void {
-    this.clipboard.copy(
-      JSON.stringify(this.data.find(e => e.id === id))
-        .replace(/,"/g, '\n')
-        .replace(/{|}/g, '')
-        .replace(/:/g, `${this.clipboardDelimeter}`)
-        .replace(/"/g, '')
-    );
+    this.clipboard.copy(textToCopy);
+
+    this.snackBarFromComponent(JSON.stringify(rawdata));
   }
+
+  displayMessage(message: string): void {
+    this.snackBar.open(message, null, { duration: this.config.popupMesageDuration });
+  }
+
+  snackBarFromComponent(message: string): void {
+    clipboardTemplateMessage$ = JSON.parse(message);
+    this.snackBar.openFromComponent(ClipboardTeamplateComponent, { duration: this.config.popupMesageDuration });
+  }
+
 }
+
+let clipboardTemplateMessage$;
+
+@Component({
+  selector: 'ae-78999991231',
+  template: `
+              <h3>Copied the item.</h3>
+              <hr>
+
+              <table>
+                    <tr *ngFor="let d of data">
+                      <td style="padding-right:10px;">{{d[0] | titlecase}}</td>
+                      <td> {{d[1]}}</td>
+                    </tr>
+              </table>
+  `,
+})
+export class ClipboardTeamplateComponent {
+  data = Object.entries(clipboardTemplateMessage$);
+}
+
