@@ -15,18 +15,23 @@
   <!-- Tool bar -->
   <mat-toolbar>
 
+    <mat-form-field style="position: absolute; z-index: 50; opacity:0; width: 40px;">
+      <mat-select multiple [(ngModel)]="this.config.filteredColumns" cdkDropList
+        (cdkDropListDropped)="dropFilterSelect($event)">
+        <mat-option *ngFor="let dcol of config.displayedColumns" [value]="dcol" cdkDrag>
+          {{dcol}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <button mat-icon-button aria-label="Filter table column">
-      <mat-form-field appearance="fill" style="position: absolute; opacity:0;">
-        <mat-select multiple [(ngModel)]="this.config.filteredColumns">
-          <mat-option *ngFor="let dcol of config.displayedColumns" [value]="dcol">{{dcol}}</mat-option>
-        </mat-select>
-      </mat-form-field>
       <mat-icon>filter_alt</mat-icon>
     </button>
 
   </mat-toolbar>
 
 
+  <!-- Table  -->
   <table mat-table class="full-width-table example-list" matSort aria-label="Elements" cdkDropList
     (cdkDropListDropped)="drop($event)">
     <!-- Id Column -->

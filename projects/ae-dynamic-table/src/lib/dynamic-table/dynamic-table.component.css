@@ -35,4 +35,6 @@
   border-left: 3px solid #303030;
 }
 
-
+.mat-select{ 
+  font-size: 9pt;
+}

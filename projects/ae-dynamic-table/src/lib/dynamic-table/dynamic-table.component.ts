@@ -147,11 +147,20 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  /**
+   * When item is dropped on table.
+   */
   drop(event: CdkDragDrop<string[]>): void {
     moveItemInArray(this.dataSource.data, event.previousIndex, event.currentIndex);
     this.dataSource.data = [...this.dataSource.data];
   }
 
+  dropFilterSelect(event): void {
+    moveItemInArray(this.config.displayedColumns, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.config.filteredColumns, event.previousIndex, event.currentIndex);
+    this.config.displayedColumns = [...this.config.displayedColumns];
+    this.config.filteredColumns = [...this.config.filteredColumns];
+  }
 
 
   /**
