@@ -1,3 +1,4 @@
+import { Clipboard } from '@angular/cdk/clipboard';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -36,15 +37,27 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
    */
   @Input() pageSizeOptions = [5, 10, 15, 20, 25, 50, 100, 250];
 
+
+  /**
+   * When user click the item, it is copied to clipboard.
+   * This delimeter is between the key and value.
+   */
+  @Input() clipboardDelimeter = '\t=> ';
+
+  /**
+   * data list for filter input.
+   */
   mappedData: any;
 
-  customDisplayedColumns: string;
+  constructor(private clipboard: Clipboard) {
+
+  }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.data);
     this.mappedData = this.dataSource.data.reduce((p, c) => {
-      let __p = p ? p : {};
-      return [...Object.values(__p), ...Object.values(c)];
+      const p$ = p ? p : {};
+      return [...Object.values(p$), ...Object.values(c)];
     });
   }
 
@@ -63,5 +76,16 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
   drop(event: CdkDragDrop<string[]>): void {
     moveItemInArray(this.dataSource.data, event.previousIndex, event.currentIndex);
     this.dataSource.data = [...this.dataSource.data];
+  }
+
+
+  copyToClipboard(id: number): void {
+    this.clipboard.copy(
+      JSON.stringify(this.data.find(e => e.id === id))
+        .replace(/,"/g, '\n')
+        .replace(/{|}/g, '')
+        .replace(/:/g, `${this.clipboardDelimeter}`)
+        .replace(/"/g, '')
+    );
   }
 }

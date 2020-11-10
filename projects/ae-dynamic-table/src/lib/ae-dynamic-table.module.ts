@@ -12,7 +12,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [AeDynamicTableComponent, DynamicTableComponent],
@@ -28,7 +29,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatTooltipModule,
     MatPaginatorModule,
     MatSortModule,
-    DragDropModule
+    DragDropModule,
+    ClipboardModule,
   ],
   exports: [AeDynamicTableComponent, DynamicTableComponent]
 })
