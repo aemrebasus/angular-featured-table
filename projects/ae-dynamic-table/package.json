@@ -1,5 +1,22 @@
 {
   "name": "ae-dynamic-table",
+  "description": "Angular Table Component",
+  "author": {
+    "name": "AhmetE"
+  },
+  "maintainers": [
+    "AhmetE"
+  ],
+  "keywords": [
+    "angular",
+    "angular-material",
+    "table",
+    "dynamic-table"
+  ],
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/aemrebasus/angular-featured-table"
+  },
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^10.1.6",

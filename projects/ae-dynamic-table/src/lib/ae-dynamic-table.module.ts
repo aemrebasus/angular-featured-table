@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { AeDynamicTableComponent } from './ae-dynamic-table.component';
 import { ClipboardTeamplateComponent, DynamicTableComponent } from './dynamic-table/dynamic-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,7 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 @NgModule({
-  declarations: [AeDynamicTableComponent, DynamicTableComponent, ClipboardTeamplateComponent],
+  declarations: [ DynamicTableComponent, ClipboardTeamplateComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -40,6 +39,6 @@ import { MatListModule } from '@angular/material/list';
     MatMenuModule,
     MatListModule,
   ],
-  exports: [AeDynamicTableComponent, DynamicTableComponent]
+  exports: [ DynamicTableComponent]
 })
 export class AeDynamicTableModule { }
