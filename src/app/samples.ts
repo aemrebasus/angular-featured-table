@@ -1,7 +1,7 @@
 export const sampleOne = {
-    HTML: '<ae-dynamic-table [data]="tableData1" [config]="DEFAULT_DYNAMICTABLE_CONFIG"></ae-dynamic-table>',
+  HTML: '<ae-dynamic-table [data]="tableData1" [config]="DEFAULT_DYNAMICTABLE_CONFIG"></ae-dynamic-table>',
 
-    TS: `
+  TS: `
 
         import { DynamicTableConfig } from 'projects/ae-dynamic-table/src/public-api';
 
@@ -30,6 +30,24 @@ export const sampleOne = {
             searchbarActive: true,
             toolbar: true
           };
+
+
+          // Add this to your module
+          providers: [
+            {
+              provide: HIGHLIGHT_OPTIONS,
+              useValue: {
+                coreLibraryLoader: function () { return import('highlight.js/lib/core'); },
+                lineNumbersLoader: function () { return import('highlightjs-line-numbers.js'); }, // Optional, only if you want the line number}s
+                languages: {
+                  typescript: function () { return import('highlight.js/lib/languages/typescript'); },
+                  css: function () { return import('highlight.js/lib/languages/css'); },
+                  xml: function () { return import('highlight.js/lib/languages/xml'); },
+                  json: function () { return import('highlight.js/lib/languages/xml'); }
+                }
+              }
+            }
+          ],
     `
 };
 
