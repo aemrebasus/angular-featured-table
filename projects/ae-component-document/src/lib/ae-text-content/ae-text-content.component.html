@@ -1,0 +1,9 @@
+<div class="hljs">
+        <button mat-icon-button style="position: absolute; right:10px; top:10px;" (click)="copyContent()"
+                matTooltip="Copy Content">
+                <mat-icon style="color:gray;">{{codeIcon}}</mat-icon>
+        </button>
+        <pre>
+                <code [highlight]="content" [lineNumbers]="true"></code>
+        </pre>
+</div>

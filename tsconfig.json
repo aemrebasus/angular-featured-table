@@ -23,6 +23,10 @@
       "ae-dynamic-table": [
         "dist/ae-dynamic-table/ae-dynamic-table",
         "dist/ae-dynamic-table"
+      ],
+      "ae-component-document": [
+        "dist/ae-component-document/ae-component-document",
+        "dist/ae-component-document"
       ]
     }
   }

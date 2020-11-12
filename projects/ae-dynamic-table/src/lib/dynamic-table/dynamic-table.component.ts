@@ -84,11 +84,14 @@ export type GenObjectType = { id: number, [key: string]: any };
 })
 export class DynamicTableComponent implements AfterViewInit, OnInit {
 
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
 
-
+  /**
+   * @Output when user click on an intem in the table, this emitter emits the id of the item.
+   */
   @Output() selected = new EventEmitter<GenObjectType>();
 
   /**
@@ -97,7 +100,7 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
   dataSource: MatTableDataSource<any>;
 
   /**
-   * The data to be shown.
+   * @Input The data to be shown.
    */
   @Input() data: { [key: string]: any }[] = [
     { id: 1, name: 'Ahmet Emrebas', title: 'Full Stack Engineer', skills: 'Angular, TypeScript, Angular Material, CSS, Java, Spring Boot 5, NodeJS, JavaScript' },
@@ -107,7 +110,7 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
 
 
   /**
-   * Generla configuration of this component.
+   * @Input Generla configuration of this component.
    */
   @Input() config: DynamicTableConfig = DEFAULT_DYNAMICTABLE_CONFIG;
 

@@ -22,7 +22,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
+            "aot": false,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -198,6 +198,46 @@
             "tsConfig": [
               "projects/ae-dynamic-table/tsconfig.lib.json",
               "projects/ae-dynamic-table/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ae-component-document": {
+      "projectType": "library",
+      "root": "projects/ae-component-document",
+      "sourceRoot": "projects/ae-component-document/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/ae-component-document/tsconfig.lib.json",
+            "project": "projects/ae-component-document/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ae-component-document/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ae-component-document/src/test.ts",
+            "tsConfig": "projects/ae-component-document/tsconfig.spec.json",
+            "karmaConfig": "projects/ae-component-document/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ae-component-document/tsconfig.lib.json",
+              "projects/ae-component-document/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

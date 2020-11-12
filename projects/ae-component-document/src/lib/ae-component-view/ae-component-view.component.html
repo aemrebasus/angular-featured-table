@@ -1,0 +1,31 @@
+<mat-card>
+
+    <mat-card-header>
+        <div style="display:flex; width:100%; justify-content: space-between; align-items: center;">
+            <span>
+                {{input.name}}
+            </span>
+            <button mat-icon-button (click)="contentVisible = !contentVisible" matTooltip="View Code">
+                <mat-icon>{{openCodeIcon}}</mat-icon>
+            </button>
+        </div>
+    </mat-card-header>
+
+    <mat-card-content *ngIf="contentVisible">
+        <mat-tab-group>
+            <mat-tab label="HTML" *ngIf="input.HTML">
+                <ae-text-content [content]="input.HTML"></ae-text-content>
+            </mat-tab>
+            <mat-tab label="TS" *ngIf="input.TS">
+                <ae-text-content [content]="input.TS"></ae-text-content>
+            </mat-tab>
+            <mat-tab label="CSS" *ngIf="input.CSS">
+                <ae-text-content [content]="input.CSS"></ae-text-content>
+            </mat-tab>
+        </mat-tab-group>
+    </mat-card-content>
+
+    <mat-card-content>
+        <ng-container *ngComponentOutlet="input.component"></ng-container>
+    </mat-card-content>
+</mat-card>

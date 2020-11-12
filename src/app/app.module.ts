@@ -12,7 +12,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AeComponentDocumentModule } from 'projects/ae-component-document/src/public-api';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BrowserModule,
     AppRoutingModule,
     AeDynamicTableModule,
+    AeComponentDocumentModule,
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
@@ -30,6 +33,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatTabsModule,
     FontAwesomeModule,
   ],
   providers: [],

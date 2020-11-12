@@ -1,6 +1,11 @@
 {
   "name": "ae-dynamic-table",
   "description": "Angular Table Component",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "@angular/common": "^10.1.6",
+    "@angular/core": "^10.1.6"
+  },
   "author": {
     "name": "AhmetE"
   },
@@ -16,11 +21,6 @@
   "repository": {
     "type": "github",
     "url": "https://github.com/aemrebasus/angular-featured-table"
-  },
-  "version": "0.0.1",
-  "peerDependencies": {
-    "@angular/common": "^10.1.6",
-    "@angular/core": "^10.1.6"
   },
   "dependencies": {
     "tslib": "^2.0.0"
