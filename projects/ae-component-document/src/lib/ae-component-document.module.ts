@@ -11,6 +11,7 @@ import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { AeTextContentComponent } from './ae-text-content/ae-text-content.component';
 import { ClipboardModule } from '@angular/cdk/clipboard';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AeDynamicTableModule } from 'projects/ae-dynamic-table/src/public-api';
 
 @NgModule({
   declarations: [AeComponentDocumentComponent, AeComponentViewComponent, AeTextContentComponent],

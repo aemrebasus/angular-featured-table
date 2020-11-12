@@ -1,22 +1,13 @@
 <mat-tab-group>
     <mat-tab label="OVERVIEW">
-        <div class="spacer-50"></div>
-        <h4>{{input.name}}</h4>
-        <p>{{input.description}}</p>
-        <div class="spacer-25"></div>
-
-        <ae-text-content [content]="input.moduleName"></ae-text-content>
-
-        <ae-component-view [input]="input.sample"></ae-component-view>
-    </mat-tab>
-    <mat-tab label="EXAMPLES">
-        <div class="spacer-50"></div>
-        <ng-content></ng-content>
-    </mat-tab>
-    <mat-tab label="OUTPUTS">
-        <div class="spacer-50"></div>
-    </mat-tab>
-    <mat-tab label="INPUTS">
-        <div class="spacer-50"></div>
+        <div class="doc-content">
+            <div class="spacer-50"></div>
+            <h4>{{input.name}}</h4>
+            <p>{{input.description}}</p>
+            <div class="spacer-25"></div>
+            <ae-text-content [content]="input.moduleName"></ae-text-content>
+            <div class="spacer-25"></div>
+            <ae-component-view [input]="input.sample"></ae-component-view>
+        </div>
     </mat-tab>
 </mat-tab-group>
