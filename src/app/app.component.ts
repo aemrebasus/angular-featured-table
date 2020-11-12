@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DynamicTableComponent, DynamicTableConfig } from 'projects/ae-dynamic-table/src/public-api';
 import { AeComponentDocument } from 'projects/ae-component-document/src/public-api';
+import { sampleOne } from './samples';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,8 @@ export class AppComponent {
     name: 'Table Component',
     sample: {
       name: 'Dynamic Table Component',
-      HTML: `<a href="?name=Ahmet">Hello there</a>`,
-      TS: 'const a = 100;',
+      HTML: sampleOne.HTML,
+      TS: sampleOne.TS,
       component: DynamicTableComponent,
     },
     description: `This component allows user to create professional tables to present and analyze data.`
@@ -27,6 +28,7 @@ export class AppComponent {
     { name: 'user 3', points: 23, position: 8 },
     { name: 'user 4', points: 33, position: 1 },
   ];
+
   tableConfig1: DynamicTableConfig = {
     clipboardDelimeter: ',',
     copyToClipboardOnClick: true,
@@ -39,13 +41,7 @@ export class AppComponent {
       verticalPosition: 'top',
       horizontalPosition: 'right',
       duration: 1000
-    }
+    },
+    snackbarActive: true,
   };
-
-
-
-
-
-
-
 }
