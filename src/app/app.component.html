@@ -1,5 +1,6 @@
 <app-navigation>
-    <ae-component-document [input]="docInput"></ae-component-document>
-    <!-- <ae-dynamic-table></ae-dynamic-table> -->
-
+    <div style="margin: 20px;">
+        <ae-component-document [input]="docInput"></ae-component-document>
+        <ae-dynamic-table [data]="tableData1" [config]="tableConfig1"></ae-dynamic-table>
+    </div>
 </app-navigation>

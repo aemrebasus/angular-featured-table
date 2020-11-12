@@ -2,14 +2,15 @@
 
     <mat-card-header>
         <div style="display:flex; width:100%; justify-content: space-between; align-items: center;">
-            <span>
-                {{input.name}}
-            </span>
+            <mat-card-subtitle> {{input.name}} </mat-card-subtitle>
+
             <button mat-icon-button (click)="contentVisible = !contentVisible" matTooltip="View Code">
                 <mat-icon>{{openCodeIcon}}</mat-icon>
             </button>
         </div>
     </mat-card-header>
+
+    <br> <br>
 
     <mat-card-content *ngIf="contentVisible">
         <mat-tab-group>

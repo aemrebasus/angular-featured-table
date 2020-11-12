@@ -131,6 +131,10 @@ export class DynamicTableComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
+    this.config = {
+      ...DEFAULT_DYNAMICTABLE_CONFIG,
+      ...this.config
+    }
     this.dataSource = new MatTableDataSource(this.data);
     this.mappedData = this.dataSource.data.reduce((p, c) => {
       const p$ = p ? p : {};

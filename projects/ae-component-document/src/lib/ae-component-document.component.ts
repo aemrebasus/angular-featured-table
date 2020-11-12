@@ -33,6 +33,7 @@ export interface AeComponentDocument {
 @Component({
   selector: 'ae-component-document',
   templateUrl: './ae-component-document.component.html',
+  styleUrls: ['./ae-component-document.component.css']
 
 })
 export class AeComponentDocumentComponent implements OnInit {
