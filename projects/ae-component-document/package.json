@@ -17,19 +17,18 @@
     "type": "github",
     "url": "https://github.com/aemrebasus/angular-featured-table"
   },
+  "whitelistedNonPeerDependencies": [
+    "."
+  ],
   "peerDependencies": {
     "@angular/common": "^10.1.6",
-    "@angular/core": "^10.1.6"
+    "@angular/core": "^10.1.6",
+    "highlight.js": "10.3.2",
+    "ngx-highlightjs": "^4.1.2",
+    "highlightjs-line-numbers.js": "2.8.0",
+    "ng-icon-type": "^1.0.1"
   },
-  "whitelistedNonPeerDependencies": [
-    "highlight.js",
-    "highlightjs-line-numbers.js"
-  ],
   "dependencies": {
-    "tslib": "^2.0.0",
-    "highlight.js": "^10.3.2",
-    "highlightjs-line-numbers.js": "^2.8.0",
-    "ng-icon-type": "^1.0.1",
-    "ngx-highlightjs": "^4.1.2"
+    "tslib": "^2.0.0"
   }
 }
