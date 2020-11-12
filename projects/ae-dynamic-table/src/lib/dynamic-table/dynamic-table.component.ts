@@ -52,10 +52,28 @@ export interface DynamicTableConfig {
   copyToClipboardOnClick?: boolean;
 
   /**
-   * Filter data list support
+   * Filter data list support, turn on/off the auto complete list.
    */
   filterDatalistActive?: boolean;
 
+
+  /**
+   * Turn on/off searchbar.
+   */
+  searchbarActive?: boolean;
+
+  /**
+   * Turn On/off download buttons
+   */
+  downloadButtons?: boolean;
+  /**
+   * When true, show the filter button, else do not.
+   */
+  filterColumnsButton?: boolean;
+  /**
+   * when true, show toolbar else do not.
+   */
+  toolbar?: boolean;
 }
 
 
@@ -72,7 +90,11 @@ export const DEFAULT_DYNAMICTABLE_CONFIG: DynamicTableConfig = {
     verticalPosition: 'bottom'
   },
   copyToClipboardOnClick: true,
-  filterDatalistActive: true
+  filterDatalistActive: true,
+  downloadButtons: true,
+  filterColumnsButton: true,
+  searchbarActive: true,
+  toolbar: true
 };
 
 

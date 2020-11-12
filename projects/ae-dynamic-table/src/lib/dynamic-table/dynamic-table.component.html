@@ -1,11 +1,10 @@
 <div class="mat-elevation-z8">
 
   <!-- Filter  -->
-  <span style="display:flex;">
+  <span style="display:flex;" *ngIf="config.searchbarActive">
 
     <mat-form-field style="flex:1 auto;" (dblclick)="input.value =''">
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input list="datalist" autocomplete="off">
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input list="datalist" autocomplete="off">
       <datalist id="datalist" *ngIf="config.filterDatalistActive">
         <option *ngFor="let o of mappedData">{{o}}</option>
       </datalist>
@@ -13,10 +12,10 @@
   </span>
 
   <!-- Tool bar -->
-  <mat-toolbar>
+  <mat-toolbar *ngIf="config.toolbar">
 
     <!-- Filter Button -->
-    <div>
+    <div *ngIf="config.filterColumnsButton">
       <mat-form-field style="position: absolute; z-index: 50; opacity:0; width: 40px;">
         <mat-select class="toolbar-text" multiple [(ngModel)]="this.config.filteredColumns" cdkDropList
           (cdkDropListDropped)="dropFilterSelect($event)">
@@ -33,7 +32,7 @@
 
 
     <!-- Download links -->
-    <div style=" flex:1 auto; display: flex; justify-content: flex-end;">
+    <div style=" flex:1 auto; display: flex; justify-content: flex-end;" *ngIf="config.downloadButtons">
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Filter table column">
         <mat-icon color="primary">get_app</mat-icon>
       </button>

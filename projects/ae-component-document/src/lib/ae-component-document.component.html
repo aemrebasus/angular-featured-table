@@ -1,18 +1,22 @@
 <mat-tab-group>
     <mat-tab label="OVERVIEW">
-        <br> <br>
-
+        <div class="spacer-50"></div>
+        <h4>{{input.name}}</h4>
         <p>{{input.description}}</p>
-        <br> <br>
-        <ae-component-view [input]="input.sample"></ae-component-view>
+        <div class="spacer-50"></div>
 
-    </mat-tab>
-    <mat-tab label="API">
-        <br> <br>
-        <h3> API Referance for {{input.name || 'Component'}}</h3>
+        <ae-text-content [content]="input.moduleName"></ae-text-content>
+
+        <ae-component-view [input]="input.sample"></ae-component-view>
     </mat-tab>
     <mat-tab label="EXAMPLES">
-        <br> <br>
+        <div class="spacer-50"></div>
         <ng-content></ng-content>
+    </mat-tab>
+    <mat-tab label="OUTPUTS">
+        <div class="spacer-50"></div>
+    </mat-tab>
+    <mat-tab label="INPUTS">
+        <div class="spacer-50"></div>
     </mat-tab>
 </mat-tab-group>

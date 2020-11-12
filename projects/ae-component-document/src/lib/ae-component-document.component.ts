@@ -18,7 +18,7 @@ export interface SingleComponent {
 export interface AeComponentDocument {
 
   name?: string;
-
+  moduleName?: string;
   sample?: AeComponentView;
 
   /**
@@ -40,6 +40,7 @@ export class AeComponentDocumentComponent implements OnInit {
 
   @Input() input: AeComponentDocument = {
     name: 'Component Name',
+    moduleName: `import {AeDynamicTableModule} from 'ae-dynamic-table';`,
     sample: {
       name: 'Test Name',
       HTML: '<h1>Test TS<h1>',

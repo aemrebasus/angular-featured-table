@@ -1,33 +1,35 @@
 export const sampleOne = {
-    HTML: '<ae-dynamic-table [data]="tableData1" [config]="tableConfig1"></ae-dynamic-table>',
+    HTML: '<ae-dynamic-table [data]="tableData1" [config]="DEFAULT_DYNAMICTABLE_CONFIG"></ae-dynamic-table>',
 
     TS: `
 
-        import { DynamicTableComponent, DynamicTableConfig } from 'projects/ae-dynamic-table/src/public-api';
+        import { DynamicTableConfig } from 'projects/ae-dynamic-table/src/public-api';
 
+        data:any = [
+            {"id":1,"name":"Ahmet Emrebas","title":"Full Stack Engineer","skills":"Angular, TypeScript, Angular Material, CSS, Java, Spring Boot 5, NodeJS, JavaScript"},
+            {"id":2,"name":"Ahmet Emrebas","title":"Full Stack Engineer","skills":"Angular, TypeScript, Angular Material, CSS, Java, Spring Boot 5, NodeJS, JavaScript"},
+            {"id":3,"name":"Ahmet Emrebas","title":"Full Stack Engineer","skills":"Angular, TypeScript, Angular Material, CSS, Java, Spring Boot 5, NodeJS, JavaScript"}
+        ]
 
-        tableData1 = [
-            { name: 'user 1', points: 30, position: 10 },
-            { name: 'user 2', points: 12, position: 2 },
-            { name: 'user 3', points: 23, position: 8 },
-            { name: 'user 4', points: 33, position: 1 },
-        ];
-
-        tableConfig1: DynamicTableConfig = {
-            clipboardDelimeter: ',',
-            copyToClipboardOnClick: true,
-            displayedColumns: ['name', 'points', 'position'],
-            filterDatalistActive: true,
-            name: 'score board',
-            filteredColumns: ['name', 'points'],
-            pageSizeOptions: [1, 2, 3, 10, 20, 30, 40, 100, 200],
-            snackbar: {
-                verticalPosition: 'top',
-                horizontalPosition: 'right',
-                duration: 1000
-            },
+        DEFAULT_DYNAMICTABLE_CONFIG: DynamicTableConfig = {
+            name: 'undefined',
+            displayedColumns: ['id', 'name', 'title', 'skills'],
+            filteredColumns: ['id', 'name', 'title', 'skills'],
+            pageSizeOptions: [5, 10, 15, 20, 25, 50, 100, 250],
+            clipboardDelimeter: '\t=> ',
             snackbarActive: true,
-        };
+            snackbar: {
+              duration: 3000,
+              horizontalPosition: 'right',
+              verticalPosition: 'bottom'
+            },
+            copyToClipboardOnClick: true,
+            filterDatalistActive: true,
+            downloadButtons: true,
+            filterColumnsButton: true,
+            searchbarActive: true,
+            toolbar: true
+          };
     `
 };
 
