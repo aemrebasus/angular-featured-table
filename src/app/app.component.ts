@@ -13,12 +13,15 @@ export class AppComponent {
   docInput: AeComponentDocument = {
     name: 'Table Component',
     sample: {
-      name: 'Dynamic Table Component',
+      name: 'Sample table component',
       HTML: sampleOne.HTML,
       TS: sampleOne.TS,
       component: DynamicTableComponent,
     },
-    description: `This component allows user to create professional tables to present and analyze data.`
+    description: `Build easy and quick tables.`,
+    componentExamples: [
+      {}
+    ]
   };
 
 

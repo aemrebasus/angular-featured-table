@@ -6,7 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { Observable, Subject, Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 
 export interface DynamicTableConfig {
@@ -156,7 +156,11 @@ export class DynamicTableComponent implements AfterViewInit, OnInit, OnDestroy {
 
     this.config = {
       ...DEFAULT_DYNAMICTABLE_CONFIG,
-      ...this.config
+      ...this.config,
+      snackbar: {
+        ...DEFAULT_DYNAMICTABLE_CONFIG.snackbar,
+        ...this.config.snackbar
+      }
     };
 
     this.dataSource = new MatTableDataSource(this.data);
@@ -260,7 +264,7 @@ export class DynamicTableComponent implements AfterViewInit, OnInit, OnDestroy {
    * Copy item content by id to clip board if it is subscribed (clipboard should be activeted in cofiguration)
    */
   copyItemContentToClipboard(): void {
-    this.clipboard.copy(this.selectedItemAsText$);
+    this.clipboard.copy(this.getSelectedFilteredItem());
   }
 
   /**
@@ -281,10 +285,12 @@ export class DynamicTableComponent implements AfterViewInit, OnInit, OnDestroy {
     return this.data.find(e => e.id === id);
   }
 
-
+  /**
+   * Display snackbar message.
+   */
   snackbarMessage(): void {
-    clipboardTemplateMessage$ = this.selectedItem$;
-    this.snackbar.openFromComponent(ClipboardTeamplateComponent);
+    clipboardTemplateMessage$ = this.getSelectedFilteredItem();
+    this.snackbar.openFromComponent(ClipboardTeamplateComponent, this.config.snackbar);
   }
 
   /**
@@ -311,6 +317,15 @@ export class DynamicTableComponent implements AfterViewInit, OnInit, OnDestroy {
     jsonData += JSON.stringify(this.getFilteredData());
     jsonData = encodeURI(jsonData);
     window.open(jsonData);
+  }
+
+
+  getSelectedFilteredItem(): any {
+    const obj = {};
+    this.config.filteredColumns.forEach(c => {
+      obj[c] = this.selectedItem$[c];
+    });
+    return obj;
   }
 
   getFilteredData(): { [key: string]: any }[] {
