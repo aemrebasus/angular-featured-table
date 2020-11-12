@@ -1,6 +1,21 @@
 {
-  "name": "ae-component-document",
-  "version": "0.0.1",
+  "description": "Angular Document Component",
+  "version": "1.0.1",
+  "author": {
+    "name": "AhmetE"
+  },
+  "maintainers": [
+    "AhmetE"
+  ],
+  "keywords": [
+    "angular",
+    "angular-material",
+    "table"
+  ],
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/aemrebasus/angular-featured-table"
+  },
   "peerDependencies": {
     "@angular/common": "^10.1.6",
     "@angular/core": "^10.1.6"

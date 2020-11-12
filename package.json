@@ -8,6 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "build:table": "ng build --prod ae-dynamic-table",
+    "build:doc": "ng build --prod ae-component-document",
     "build:site": "ng build --prod --base-href=./angular-featured-table",
     "deploy": "gh-pages -d dist/angular-featured-table"
   },
