@@ -15,6 +15,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AeComponentDocumentModule } from 'projects/ae-component-document/src/public-api';
+import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,21 @@ import { AeComponentDocumentModule } from 'projects/ae-component-document/src/pu
     MatTabsModule,
     FontAwesomeModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: {
+        coreLibraryLoader: function () { return import('highlight.js/lib/core'); },
+        lineNumbersLoader: function () { return import('highlightjs-line-numbers.js'); }, // Optional, only if you want the line number}s
+        languages: {
+          typescript: function () { return import('highlight.js/lib/languages/typescript'); },
+          css: function () { return import('highlight.js/lib/languages/css'); },
+          xml: function () { return import('highlight.js/lib/languages/xml'); },
+          json: function () { return import('highlight.js/lib/languages/xml'); }
+        }
+      }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

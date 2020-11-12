@@ -1,4 +1,5 @@
 {
+  "name": "ae-component-document",
   "description": "Angular Document Component",
   "version": "1.0.1",
   "author": {
@@ -20,7 +21,15 @@
     "@angular/common": "^10.1.6",
     "@angular/core": "^10.1.6"
   },
+  "whitelistedNonPeerDependencies": [
+    "highlight.js",
+    "highlightjs-line-numbers.js"
+  ],
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "highlight.js": "^10.3.2",
+    "highlightjs-line-numbers.js": "^2.8.0",
+    "ng-icon-type": "^1.0.1",
+    "ngx-highlightjs": "^4.1.2"
   }
 }
