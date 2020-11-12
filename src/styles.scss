@@ -1,6 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~highlight.js/styles/github.css";
 
+.hljs {
+    background-color: #b9b7b7;
+    margin: 4px;
+}
+
+.hljs .hljs {
+    box-shadow: none;
+    margin: 0px;
+    border-left: 5px solid #404040;
+    transition: font-size ease-in-out 400ms;
+    cursor: copy;
+}
 
 html,
 body {

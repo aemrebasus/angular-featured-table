@@ -5,7 +5,7 @@ export const sampleOne = {
 
         import { DynamicTableConfig } from 'projects/ae-dynamic-table/src/public-api';
 
-        data:any = [
+        data:{[key:string]:any}[] = [
             {"id":1,"name":"Ahmet Emrebas","title":"Full Stack Engineer","skills":"Angular, TypeScript, Angular Material, CSS, Java, Spring Boot 5, NodeJS, JavaScript"},
             {"id":2,"name":"Ahmet Emrebas","title":"Full Stack Engineer","skills":"Angular, TypeScript, Angular Material, CSS, Java, Spring Boot 5, NodeJS, JavaScript"},
             {"id":3,"name":"Ahmet Emrebas","title":"Full Stack Engineer","skills":"Angular, TypeScript, Angular Material, CSS, Java, Spring Boot 5, NodeJS, JavaScript"}
