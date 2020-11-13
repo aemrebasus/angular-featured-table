@@ -30,45 +30,6 @@ export const sampleOne = {
             searchbarActive: true,
             toolbar: true
           };
-
-
-          // Add this to your module
-          providers: [
-            {
-              provide: HIGHLIGHT_OPTIONS,
-              useValue: {
-                coreLibraryLoader: function () { return import('highlight.js/lib/core'); },
-                lineNumbersLoader: function () { return import('highlightjs-line-numbers.js'); }, // Optional, only if you want the line number}s
-                languages: {
-                  typescript: function () { return import('highlight.js/lib/languages/typescript'); },
-                  css: function () { return import('highlight.js/lib/languages/css'); },
-                  xml: function () { return import('highlight.js/lib/languages/xml'); },
-                  json: function () { return import('highlight.js/lib/languages/xml'); }
-                }
-              }
-            }
-          ],
-
-
-
-          ### Add this style url to your main style file.
-
-          @import "~highlight.js/styles/darcula.css";
-
-          .hljs {
-              margin: 4px;
-          }
-
-          .hljs .hljs {
-              box-shadow: none;
-              margin: 0px;
-              border-left: 5px solid #404040;
-              transition: font-size ease-in-out 400ms;
-              cursor: copy;
-          }
-
-
-
     `
 };
 
