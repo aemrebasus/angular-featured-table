@@ -2,8 +2,10 @@
   "name": "ae-component-document",
   "description": "Angular Document Component",
   "version": "1.0.1",
+  
   "author": {
-    "name": "AhmetE"
+    "name": "Ahmet Emrebas",
+    "email": "aemrebasus@gmail.com"
   },
   "maintainers": [
     "AhmetE"

@@ -1,16 +1,18 @@
 {
   "name": "ae-dynamic-table",
   "description": "Angular Table Component",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "peerDependencies": {
     "@angular/common": "^10.1.6",
     "@angular/core": "^10.1.6"
   },
+  "homepage": "https://aemrebasus.github.io/angular-featured-table",
   "author": {
-    "name": "AhmetE"
+    "name": "Ahmet Emrebas",
+    "email": "aemrebasus@gmail.com"
   },
   "maintainers": [
-    "AhmetE"
+    "Ahmet Emrebas"
   ],
   "keywords": [
     "angular",
