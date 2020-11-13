@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AeDynamicTableModule } from 'projects/ae-dynamic-table/src/public-api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,7 +23,6 @@ import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     AeDynamicTableModule,
     AeComponentDocumentModule,
     BrowserAnimationsModule,
