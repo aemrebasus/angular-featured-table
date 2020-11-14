@@ -3,8 +3,9 @@
   <!-- Filter  -->
   <span style="display:flex;" *ngIf="config.searchbarActive">
 
-    <mat-form-field style="flex:1 auto;" (dblclick)="input.value =''">
-      <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input list="datalist" autocomplete="off">
+    <mat-form-field style="flex:1 auto;" (dblclick)="doubleClickOnSearchBar()">
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search" [(ngModel)]="dataSource.filter" list="datalist"
+        autocomplete="off">
       <datalist id="datalist" *ngIf="config.filterDatalistActive">
         <option *ngFor="let o of mappedData">{{o}}</option>
       </datalist>
@@ -18,7 +19,7 @@
     <div *ngIf="config.filterColumnsButton">
       <mat-form-field style="position: absolute; z-index: 50; opacity:0; width: 40px;">
         <mat-select class="toolbar-text" multiple [(ngModel)]="this.config.filteredColumns" cdkDropList
-          (cdkDropListDropped)="dropFilterSelect($event)">
+          (cdkDropListDropped)="dropFilterSelect($event)" (selectionChange)="columnFilterSelectionChange()">
           <mat-option *ngFor="let dcol of config.displayedColumns" [value]="dcol" cdkDrag>
             {{dcol}}
           </mat-option>

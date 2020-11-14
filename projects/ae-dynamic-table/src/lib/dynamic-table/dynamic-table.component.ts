@@ -117,6 +117,13 @@ export class DynamicTableComponent implements AfterViewInit, OnInit, OnDestroy {
    */
   @Output() selected = new EventEmitter<GenObjectType>();
 
+
+  /**
+   * @Output when user select/deselect columns
+   */
+  @Output() columnFilterChange = new EventEmitter<string[]>();
+
+
   /**
    * Table data source
    */
@@ -199,12 +206,14 @@ export class DynamicTableComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   subscribeEvents(): void {
+
     this.subscriptions.push(
 
       // When item selected/clicked
       this.selectedItem.subscribe(updated => {
         this.selectedItem$ = updated;
         this.selectedItemAsText.next(this.toText(updated));
+        this.selected.emit(this.selectedItem$);
       }),
 
       // When item selected clicked
@@ -272,6 +281,18 @@ export class DynamicTableComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   /**
+   * When user select/deselect row filter, emit the new displayed columns.
+   */
+  columnFilterSelectionChange(): void {
+    this.columnFilterChange.emit(this.config.filteredColumns);
+    console.log(this.config.filteredColumns);
+  }
+
+  doubleClickOnSearchBar(): void {
+    this.dataSource.filter = '';
+  }
+
+  /**
    * When user mouser enter the table row, run this method.
    * Set the hovered item to the hoverItem
    */
@@ -323,6 +344,7 @@ export class DynamicTableComponent implements AfterViewInit, OnInit, OnDestroy {
   clickedFilterList(event): void {
     event.preventDefault();
   }
+
 
 
   toCSV(): void {
