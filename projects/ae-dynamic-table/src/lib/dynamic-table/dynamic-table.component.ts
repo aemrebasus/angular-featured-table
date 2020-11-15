@@ -125,6 +125,11 @@ export class DynamicTableComponent implements AfterViewInit, OnInit, OnDestroy {
 
 
   /**
+   * @Output when user types into searchbar, emit the value.
+   */
+  @Output() searchInput = new EventEmitter<string>();
+
+  /**
    * Table data source
    */
   dataSource: MatTableDataSource<any>;
@@ -179,7 +184,6 @@ export class DynamicTableComponent implements AfterViewInit, OnInit, OnDestroy {
   constructor(private clipboard: Clipboard, private snackbar: MatSnackBar) {
 
   }
-
 
   ngOnInit(): void {
 
@@ -283,8 +287,18 @@ export class DynamicTableComponent implements AfterViewInit, OnInit, OnDestroy {
     console.log(this.config.filteredColumns);
   }
 
+  /**
+   * When the searchbar double clicked, clear the content.
+   */
   doubleClickOnSearchBar(): void {
     this.dataSource.filter = '';
+  }
+
+  /**
+   * When user types into search bar, then emit the value.
+   */
+  searchInputChange(): void {
+    this.searchInput.emit(this.dataSource.filter);
   }
 
   /**
