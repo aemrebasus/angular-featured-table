@@ -190,7 +190,7 @@ export class DynamicTableComponent implements AfterViewInit, OnInit, OnDestroy {
         ...DEFAULT_DYNAMICTABLE_CONFIG.snackbar,
         ...this.config.snackbar
       },
-      filteredColumns: this.config.displayedColumns
+      filteredColumns: this.config.filteredColumns || this.config.displayedColumns
     };
 
     this.dataSource = new MatTableDataSource(this.data);
