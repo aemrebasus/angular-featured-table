@@ -184,12 +184,6 @@ export class DynamicTableComponent implements AfterViewInit, OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.config = {
-      ...DEFAULT_DYNAMICTABLE_CONFIG,
-      ...this.config,
-      snackbar: {
-        ...DEFAULT_DYNAMICTABLE_CONFIG.snackbar,
-        ...this.config.snackbar
-      },
       filteredColumns: this.config.filteredColumns || this.config.displayedColumns
     };
 
