@@ -184,6 +184,7 @@ export class DynamicTableComponent implements AfterViewInit, OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.config = {
+      ...this.config,
       filteredColumns: this.config.filteredColumns || this.config.displayedColumns
     };
 
